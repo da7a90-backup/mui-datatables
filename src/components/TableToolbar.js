@@ -320,19 +320,6 @@ class TableToolbar extends React.Component {
         className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.root : classes.fullWidthRoot}
         role={'toolbar'}
         aria-label={'Table Toolbar'}>
-        <div className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.root : classes.fullWidthRoot}>
-        <TableFilterComponent
-              customFooter={options.customFilterDialogFooter}
-              columns={columns}
-              options={options}
-              filterList={filterList}
-              filterData={filterData}
-              onFilterUpdate={filterUpdate}
-              onFilterReset={resetFilters}
-              updateFilterByType={updateFilterByType}
-              components={components}
-            />
-        </div>
         <div className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.left : classes.fullWidthLeft}>
           {showSearch === true ? (
             options.customSearchRender ? (
@@ -356,6 +343,17 @@ class TableToolbar extends React.Component {
                 }>
                 {title}
               </Typography>
+              <TableFilterComponent
+              customFooter={options.customFilterDialogFooter}
+              columns={columns}
+              options={options}
+              filterList={filterList}
+              filterData={filterData}
+              onFilterUpdate={filterUpdate}
+              onFilterReset={resetFilters}
+              updateFilterByType={updateFilterByType}
+              components={components}
+            />
             </div>
           )}
         </div>
