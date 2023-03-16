@@ -316,11 +316,8 @@ class TableToolbar extends React.Component {
 
     return (
       <>          
-        <Paper
-         // refExit={filterPopoverExit}
-          //hide={this.state.hideFilterPopover || options.filter === 'disabled'}
-          classes={{ paper: classes.filterPaper }}
-          content={
+
+
             <TableFilterComponent
               customFooter={options.customFilterDialogFooter}
               columns={columns}
@@ -332,8 +329,8 @@ class TableToolbar extends React.Component {
               updateFilterByType={updateFilterByType}
               components={components}
             />
-          }
-        />
+        
+     
     
       <Toolbar
         className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.root : classes.fullWidthRoot}
