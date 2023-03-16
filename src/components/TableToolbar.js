@@ -316,9 +316,12 @@ class TableToolbar extends React.Component {
 
     return (
       <>          
-
-
-            <TableFilterComponent
+      <Toolbar
+        className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.root : classes.fullWidthRoot}
+        role={'toolbar'}
+        aria-label={'Table Toolbar'}>
+        <div className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.root : classes.fullWidthRoot}>
+        <TableFilterComponent
               customFooter={options.customFilterDialogFooter}
               columns={columns}
               options={options}
@@ -329,13 +332,7 @@ class TableToolbar extends React.Component {
               updateFilterByType={updateFilterByType}
               components={components}
             />
-        
-     
-    
-      <Toolbar
-        className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.root : classes.fullWidthRoot}
-        role={'toolbar'}
-        aria-label={'Table Toolbar'}>
+        </div>
         <div className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.left : classes.fullWidthLeft}>
           {showSearch === true ? (
             options.customSearchRender ? (
