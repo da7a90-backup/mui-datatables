@@ -16,6 +16,7 @@ import find from 'lodash.find';
 import { withStyles } from 'tss-react/mui';
 import { createCSVDownload, downloadCSV } from '../utils';
 import MuiTooltip from '@mui/material/Tooltip';
+import { Paper } from '@mui/material';
 
 export const defaultToolbarStyles = theme => ({
   root: {
@@ -308,20 +309,32 @@ class TableToolbar extends React.Component {
     const DownloadIconComponent = icons.DownloadIcon || DownloadIcon;
     const PrintIconComponent = icons.PrintIcon || PrintIcon;
     const ViewColumnIconComponent = icons.ViewColumnIcon || ViewColumnIcon;
-    const FilterIconComponent = icons.FilterIcon || FilterIcon;
+   // const FilterIconComponent = icons.FilterIcon || FilterIcon;
     const { search, downloadCsv, print, viewColumns, filterTable } = options.textLabels.toolbar;
     const { showSearch, searchText } = this.state;
 
-    const filterPopoverExit = () => {
-      this.setState({ hideFilterPopover: false });
-      this.setActiveIcon();
-    };
-
-    const closeFilterPopover = () => {
-      this.setState({ hideFilterPopover: true });
-    };
 
     return (
+      <>          
+        <Paper
+         // refExit={filterPopoverExit}
+          //hide={this.state.hideFilterPopover || options.filter === 'disabled'}
+          classes={{ paper: classes.filterPaper }}
+          content={
+            <TableFilterComponent
+              customFooter={options.customFilterDialogFooter}
+              columns={columns}
+              options={options}
+              filterList={filterList}
+              filterData={filterData}
+              onFilterUpdate={filterUpdate}
+              onFilterReset={resetFilters}
+              updateFilterByType={updateFilterByType}
+              components={components}
+            />
+          }
+        />
+    
       <Toolbar
         className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.root : classes.fullWidthRoot}
         role={'toolbar'}
@@ -429,42 +442,10 @@ class TableToolbar extends React.Component {
               }
             />
           )}
-          {!(options.filter === false || options.filter === 'false') && (
-            <Popover
-              refExit={filterPopoverExit}
-              hide={this.state.hideFilterPopover || options.filter === 'disabled'}
-              classes={{ paper: classes.filterPaper, closeIcon: classes.filterCloseIcon }}
-              trigger={
-                <Tooltip title={filterTable} disableFocusListener>
-                  <IconButton
-                    data-testid={filterTable + '-iconButton'}
-                    aria-label={filterTable}
-                    classes={{ root: this.getActiveIcon(classes, 'filter') }}
-                    disabled={options.filter === 'disabled'}
-                    onClick={this.setActiveIcon.bind(null, 'filter')}>
-                    <FilterIconComponent />
-                  </IconButton>
-                </Tooltip>
-              }
-              content={
-                <TableFilterComponent
-                  customFooter={options.customFilterDialogFooter}
-                  columns={columns}
-                  options={options}
-                  filterList={filterList}
-                  filterData={filterData}
-                  onFilterUpdate={filterUpdate}
-                  onFilterReset={resetFilters}
-                  handleClose={closeFilterPopover}
-                  updateFilterByType={updateFilterByType}
-                  components={components}
-                />
-              }
-            />
-          )}
           {options.customToolbar && options.customToolbar({ displayData: this.props.displayData })}
         </div>
       </Toolbar>
+      </>
     );
   }
 }

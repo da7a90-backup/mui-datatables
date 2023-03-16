@@ -351,7 +351,7 @@ class TableFilter extends React.Component {
       this.props.onFilterUpdate(index, filter, this.props.columns[index], 'custom');
     });
 
-    this.props.handleClose(); // close filter dialog popover
+    //this.props.handleClose(); close filter dialog popover
 
     if (this.props.options.onFilterConfirm) {
       this.props.options.onFilterConfirm(this.state.filterList);
