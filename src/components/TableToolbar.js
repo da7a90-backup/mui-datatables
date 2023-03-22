@@ -309,134 +309,137 @@ class TableToolbar extends React.Component {
     const DownloadIconComponent = icons.DownloadIcon || DownloadIcon;
     const PrintIconComponent = icons.PrintIcon || PrintIcon;
     const ViewColumnIconComponent = icons.ViewColumnIcon || ViewColumnIcon;
-   // const FilterIconComponent = icons.FilterIcon || FilterIcon;
+    // const FilterIconComponent = icons.FilterIcon || FilterIcon;
     const { search, downloadCsv, print, viewColumns, filterTable } = options.textLabels.toolbar;
     const { showSearch, searchText } = this.state;
 
-
     return (
-      <>          
-      <Toolbar
-        className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.root : classes.fullWidthRoot}
-        role={'toolbar'}
-        aria-label={'Table Toolbar'}>
-        <div className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.left : classes.fullWidthLeft}>
-          {showSearch === true ? (
-            options.customSearchRender ? (
-              options.customSearchRender(searchText, this.handleSearch, this.hideSearch, options)
-            ) : (
-              <TableSearch
-                searchText={searchText}
-                onSearch={this.handleSearch}
-                onHide={this.hideSearch}
-                options={options}
-              />
-            )
-          ) : typeof title !== 'string' ? (
-            title
-          ) : (
-            <div className={classes.titleRoot} aria-hidden={'true'}>
-              <Typography
-                variant="h6"
-                className={
-                  options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.titleText : classes.fullWidthTitleText
-                }>
-                {title}
-              </Typography>
-              <TableFilterComponent
-              customFooter={options.customFilterDialogFooter}
-              columns={columns}
-              options={options}
-              filterList={filterList}
-              filterData={filterData}
-              onFilterUpdate={filterUpdate}
-              onFilterReset={resetFilters}
-              updateFilterByType={updateFilterByType}
-              components={components}
-            />
-            </div>
-          )}
-        </div>
-        <div className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.actions : classes.fullWidthActions}>
-          {!(options.search === false || options.search === 'false' || options.searchAlwaysOpen === true) && (
-            <Tooltip title={search} disableFocusListener>
-              <IconButton
-                aria-label={search}
-                data-testid={search + '-iconButton'}
-                ref={el => (this.searchButton = el)}
-                classes={{ root: this.getActiveIcon(classes, 'search') }}
-                disabled={options.search === 'disabled'}
-                onClick={this.handleSearchIconClick}>
-                <SearchIconComponent />
-              </IconButton>
-            </Tooltip>
-          )}
-          {!(options.download === false || options.download === 'false') && (
-            <Tooltip title={downloadCsv}>
-              <IconButton
-                data-testid={downloadCsv.replace(/\s/g, '') + '-iconButton'}
-                aria-label={downloadCsv}
-                classes={{ root: classes.icon }}
-                disabled={options.download === 'disabled'}
-                onClick={this.handleCSVDownload}>
-                <DownloadIconComponent />
-              </IconButton>
-            </Tooltip>
-          )}
-          {!(options.print === false || options.print === 'false') && (
-            <span>
-              <ReactToPrint content={() => this.props.tableRef()}>
-                <PrintContextConsumer>
-                  {({ handlePrint }) => (
-                    <span>
-                      <Tooltip title={print}>
-                        <IconButton
-                          data-testid={print + '-iconButton'}
-                          aria-label={print}
-                          disabled={options.print === 'disabled'}
-                          onClick={handlePrint}
-                          classes={{ root: classes.icon }}>
-                          <PrintIconComponent />
-                        </IconButton>
-                      </Tooltip>
-                    </span>
-                  )}
-                </PrintContextConsumer>
-              </ReactToPrint>
-            </span>
-          )}
-          {!(options.viewColumns === false || options.viewColumns === 'false') && (
-            <Popover
-              refExit={this.setActiveIcon.bind(null)}
-              classes={{ closeIcon: classes.filterCloseIcon }}
-              hide={options.viewColumns === 'disabled'}
-              trigger={
-                <Tooltip title={viewColumns} disableFocusListener>
-                  <IconButton
-                    data-testid={viewColumns + '-iconButton'}
-                    aria-label={viewColumns}
-                    classes={{ root: this.getActiveIcon(classes, 'viewcolumns') }}
-                    disabled={options.viewColumns === 'disabled'}
-                    onClick={this.setActiveIcon.bind(null, 'viewcolumns')}>
-                    <ViewColumnIconComponent />
-                  </IconButton>
-                </Tooltip>
-              }
-              content={
-                <TableViewColComponent
-                  data={data}
-                  columns={columns}
+      <>
+        <Paper>
+          <TableFilterComponent
+            customFooter={options.customFilterDialogFooter}
+            columns={columns}
+            options={options}
+            filterList={filterList}
+            filterData={filterData}
+            onFilterUpdate={filterUpdate}
+            onFilterReset={resetFilters}
+            updateFilterByType={updateFilterByType}
+            components={components}
+          />
+        </Paper>
+
+        <Toolbar
+          className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.root : classes.fullWidthRoot}
+          role={'toolbar'}
+          aria-label={'Table Toolbar'}>
+          <div className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.left : classes.fullWidthLeft}>
+            {showSearch === true ? (
+              options.customSearchRender ? (
+                options.customSearchRender(searchText, this.handleSearch, this.hideSearch, options)
+              ) : (
+                <TableSearch
+                  searchText={searchText}
+                  onSearch={this.handleSearch}
+                  onHide={this.hideSearch}
                   options={options}
-                  onColumnUpdate={toggleViewColumn}
-                  updateColumns={updateColumns}
-                  components={components}
                 />
-              }
-            />
-          )}
-          {options.customToolbar && options.customToolbar({ displayData: this.props.displayData })}
-        </div>
-      </Toolbar>
+              )
+            ) : typeof title !== 'string' ? (
+              title
+            ) : (
+              <div className={classes.titleRoot} aria-hidden={'true'}>
+                <Typography
+                  variant="h6"
+                  className={
+                    options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.titleText : classes.fullWidthTitleText
+                  }>
+                  {title}
+                </Typography>
+              </div>
+            )}
+          </div>
+          <div
+            className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.actions : classes.fullWidthActions}>
+            {!(options.search === false || options.search === 'false' || options.searchAlwaysOpen === true) && (
+              <Tooltip title={search} disableFocusListener>
+                <IconButton
+                  aria-label={search}
+                  data-testid={search + '-iconButton'}
+                  ref={el => (this.searchButton = el)}
+                  classes={{ root: this.getActiveIcon(classes, 'search') }}
+                  disabled={options.search === 'disabled'}
+                  onClick={this.handleSearchIconClick}>
+                  <SearchIconComponent />
+                </IconButton>
+              </Tooltip>
+            )}
+            {!(options.download === false || options.download === 'false') && (
+              <Tooltip title={downloadCsv}>
+                <IconButton
+                  data-testid={downloadCsv.replace(/\s/g, '') + '-iconButton'}
+                  aria-label={downloadCsv}
+                  classes={{ root: classes.icon }}
+                  disabled={options.download === 'disabled'}
+                  onClick={this.handleCSVDownload}>
+                  <DownloadIconComponent />
+                </IconButton>
+              </Tooltip>
+            )}
+            {!(options.print === false || options.print === 'false') && (
+              <span>
+                <ReactToPrint content={() => this.props.tableRef()}>
+                  <PrintContextConsumer>
+                    {({ handlePrint }) => (
+                      <span>
+                        <Tooltip title={print}>
+                          <IconButton
+                            data-testid={print + '-iconButton'}
+                            aria-label={print}
+                            disabled={options.print === 'disabled'}
+                            onClick={handlePrint}
+                            classes={{ root: classes.icon }}>
+                            <PrintIconComponent />
+                          </IconButton>
+                        </Tooltip>
+                      </span>
+                    )}
+                  </PrintContextConsumer>
+                </ReactToPrint>
+              </span>
+            )}
+            {!(options.viewColumns === false || options.viewColumns === 'false') && (
+              <Popover
+                refExit={this.setActiveIcon.bind(null)}
+                classes={{ closeIcon: classes.filterCloseIcon }}
+                hide={options.viewColumns === 'disabled'}
+                trigger={
+                  <Tooltip title={viewColumns} disableFocusListener>
+                    <IconButton
+                      data-testid={viewColumns + '-iconButton'}
+                      aria-label={viewColumns}
+                      classes={{ root: this.getActiveIcon(classes, 'viewcolumns') }}
+                      disabled={options.viewColumns === 'disabled'}
+                      onClick={this.setActiveIcon.bind(null, 'viewcolumns')}>
+                      <ViewColumnIconComponent />
+                    </IconButton>
+                  </Tooltip>
+                }
+                content={
+                  <TableViewColComponent
+                    data={data}
+                    columns={columns}
+                    options={options}
+                    onColumnUpdate={toggleViewColumn}
+                    updateColumns={updateColumns}
+                    components={components}
+                  />
+                }
+              />
+            )}
+            {options.customToolbar && options.customToolbar({ displayData: this.props.displayData })}
+          </div>
+        </Toolbar>
       </>
     );
   }

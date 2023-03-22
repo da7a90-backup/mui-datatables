@@ -143,6 +143,7 @@ const TableHead = ({
                 sortDirection={column.name === sortOrder.name ? sortOrder.direction : 'none'}
                 toggleSort={handleToggleColumn}
                 hint={column.hint}
+                data={data}
                 print={column.print}
                 options={options}
                 column={column}

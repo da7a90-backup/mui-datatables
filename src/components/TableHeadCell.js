@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import HelpIcon from '@mui/icons-material/Help';
 import MuiTooltip from '@mui/material/Tooltip';
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import useColumnDrop from '../hooks/useColumnDrop.js';
@@ -74,6 +74,7 @@ const TableHeadCell = ({
   draggableHeadCellRefs,
   draggingHook,
   hint,
+  data,
   index,
   options,
   print,
@@ -235,33 +236,12 @@ const TableHeadCell = ({
               </div>
             </Button>
           </Tooltip>
-          {hint && (
-            <Tooltip title={hint}>
-              <HelpIcon
-                className={!sortActive ? classes.hintIconAlone : classes.hintIconWithSortIcon}
-                fontSize="small"
-              />
-            </Tooltip>
-          )}
+          {hint && hint({ data, column, colPosition })}
         </span>
       ) : (
         <div className={hint ? classes.sortAction : null} ref={isDraggingEnabled() ? dragRef : null}>
           {children}
-          {hint && (
-            <Tooltip
-              title={hint}
-              placement={'bottom-end'}
-              open={hintTooltipOpen}
-              onOpen={() => showHintTooltip()}
-              onClose={() => setHintTooltipOpen(false)}
-              classes={{
-                tooltip: classes.tooltip,
-                popper: classes.mypopper,
-              }}
-              enterDelay={300}>
-              <HelpIcon className={classes.hintIconAlone} fontSize="small" />
-            </Tooltip>
-          )}
+          {hint && hint(data)}
         </div>
       )}
     </TableCell>
@@ -278,7 +258,7 @@ TableHeadCell.propTypes = {
   /** Sort enabled / disabled for this column **/
   sort: PropTypes.bool.isRequired,
   /** Hint tooltip text */
-  hint: PropTypes.string,
+  hint: PropTypes.any,
   /** Column displayed in print */
   print: PropTypes.bool.isRequired,
   /** Optional to be used with `textLabels.body.columnHeaderTooltip` */
