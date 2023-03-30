@@ -405,10 +405,10 @@ class TableFilter extends React.Component {
           spacing={4}>
             <Grid
             container
-            direction="column"
+            direction="row"
             justifyContent="center"
             alignItems="center"
-            xs={6}
+            xs={3}
             spacing={2}
             >
           {columns.map((column, index) => {
@@ -424,7 +424,7 @@ class TableFilter extends React.Component {
             direction="column"
             justifyContent="center"
             alignItems="center"
-            xs={2}
+            xs={3}
             spacing={2}
             >
           {columns.map((column, index) => {
@@ -437,10 +437,10 @@ class TableFilter extends React.Component {
             </Grid>
             <Grid
             container
-            direction="column"
+            direction="row"
             justifyContent="center"
             alignItems="center"
-            xs={4}
+            xs={6}
             spacing={2}
             >
           {columns.map((column, index) => {
