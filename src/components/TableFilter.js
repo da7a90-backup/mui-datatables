@@ -167,7 +167,7 @@ class TableFilter extends React.Component {
     return (
       <Grid item key={index} xs={2}>
         <FormGroup>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <Typography variant="body2" className={classes.checkboxListTitle}>
               {column.label}
             </Typography>
@@ -407,7 +407,7 @@ class TableFilter extends React.Component {
             container
             direction="column"
             justifyContent="center"
-            alignItems="start"
+            alignItems="center"
             xs={4}
             >
           {columns.map((column, index) => {
