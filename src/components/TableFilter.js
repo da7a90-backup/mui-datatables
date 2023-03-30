@@ -165,7 +165,7 @@ class TableFilter extends React.Component {
       column.filterOptions && column.filterOptions.renderValue ? column.filterOptions.renderValue : v => v;
 
     return (
-      <Grid item key={index} xs={2}>
+      <Grid item key={index} xs={6}>
         <FormGroup>
           <Grid item xs={8}>
             <Typography variant="body2" className={classes.checkboxListTitle}>
@@ -278,13 +278,13 @@ class TableFilter extends React.Component {
     const { filterList } = this.state;
     const renderItem =
       column.filterOptions && column.filterOptions.renderValue ? column.filterOptions.renderValue : v => v;
-    const width = (column.filterOptions && column.filterOptions.fullWidth) === true ? 8 : 2;
+    const width = (column.filterOptions && column.filterOptions.fullWidth) === true ? 8 : 6;
     return (
       <Grid
         item
         key={index}
         xs={width}
-        classes={{ 'grid-xs-8': classes.gridListTile, 'grid-xs-2': classes.gridListTile }}>
+        classes={{ 'grid-xs-8': classes.gridListTile, 'grid-xs-6': classes.gridListTile }}>
         <FormControl key={index} variant={'standard'}>
           <InputLabel htmlFor={column.name}>{column.label}</InputLabel>
           <Select
@@ -320,7 +320,7 @@ class TableFilter extends React.Component {
   renderCustomField(column, index) {
     const { classes, filterData, options } = this.props;
     const { filterList } = this.state;
-    const width = (column.filterOptions && column.filterOptions.fullWidth) === true ? 8 : 2;
+    const width = (column.filterOptions && column.filterOptions.fullWidth) === true ? 8 : 6;
     const display =
       (column.filterOptions && column.filterOptions.display) ||
       (options.filterOptions && options.filterOptions.display);
@@ -338,7 +338,7 @@ class TableFilter extends React.Component {
         item
         key={index}
         xs={width}
-        classes={{ 'grid-xs-8': classes.gridListTile, 'grid-xs-2': classes.gridListTile }}>
+        classes={{ 'grid-xs-8': classes.gridListTile, 'grid-xs-6': classes.gridListTile }}>
         <FormControl key={index} fullWidth>
           {display(filterList, this.handleCustomChange, index, column, filterData)}
         </FormControl>
@@ -403,20 +403,86 @@ class TableFilter extends React.Component {
           justifyContent="flex-start"
           alignItems="center"
           spacing={4}>
+            <Grid
+            container
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="center"
+            xs={3}
+            spacing={2}
+            >
           {columns.map((column, index) => {
             if (column.filter) {
               const filterType = column.filterType || options.filterType;
-              return filterType === 'checkbox'
-                ? this.renderCheckbox(column, index, components)
-                : filterType === 'multiselect'
-                ? this.renderMultiselect(column, index, components)
-                : filterType === 'textField'
-                ? this.renderTextField(column, index)
-                : filterType === 'custom'
-                ? this.renderCustomField(column, index)
-                : this.renderSelect(column, index);
+              if(filterType === 'custom') 
+              return this.renderCustomField(column, index);
             }
           })}
+            </Grid>
+            <Grid
+            container
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="center"
+            xs={3}
+            spacing={2}
+            >
+          {columns.map((column, index) => {
+            if (column.filter) {
+              const filterType = column.filterType || options.filterType;
+              if(filterType === 'multiselect') 
+              return this.renderMultiselect(column, index, components);
+            }
+          })}
+            </Grid>
+            <Grid
+            container
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="center"
+            xs={3}
+            spacing={2}
+            >
+          {columns.map((column, index) => {
+            if (column.filter) {
+              const filterType = column.filterType || options.filterType;
+              if(filterType === 'checkbox') 
+              return this.renderCheckbox(column, index, components);
+            }
+          })}
+            </Grid>
+            <Grid
+            container
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="center"
+            xs={3}
+            spacing={2}
+            >
+          {columns.map((column, index) => {
+            if (column.filter) {
+              const filterType = column.filterType || options.filterType;
+              if(filterType === 'textField') 
+              return this.renderTextField(column, index);
+            }
+          })}
+            </Grid>
+            <Grid
+            container
+            direction="column"
+            justifyContent="flex-start"
+            alignItems="center"
+            xs={3}
+            spacing={2}
+            >
+          {columns.map((column, index) => {
+            if (column.filter) {
+              const filterType = column.filterType || options.filterType;
+              if(filterType === 'select') 
+              return this.renderSelect(column, index);
+            }
+          })}
+            </Grid>
         </Grid>
         {customFooter ? customFooter(filterList, this.applyFilters) : ''}
       </div>
