@@ -406,9 +406,9 @@ class TableFilter extends React.Component {
             <Grid
             container
             direction="column"
-            justifyContent="flex-start"
+            justifyContent="center"
             alignItems="center"
-            xs={3}
+            xs={6}
             spacing={2}
             >
           {columns.map((column, index) => {
@@ -422,9 +422,9 @@ class TableFilter extends React.Component {
             <Grid
             container
             direction="column"
-            justifyContent="flex-start"
+            justifyContent="center"
             alignItems="center"
-            xs={3}
+            xs={2}
             spacing={2}
             >
           {columns.map((column, index) => {
@@ -438,9 +438,9 @@ class TableFilter extends React.Component {
             <Grid
             container
             direction="column"
-            justifyContent="flex-start"
+            justifyContent="center"
             alignItems="center"
-            xs={3}
+            xs={4}
             spacing={2}
             >
           {columns.map((column, index) => {
