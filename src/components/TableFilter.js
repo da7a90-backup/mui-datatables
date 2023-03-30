@@ -165,9 +165,9 @@ class TableFilter extends React.Component {
       column.filterOptions && column.filterOptions.renderValue ? column.filterOptions.renderValue : v => v;
 
     return (
-      <Grid item key={index} xs={4}>
+      <Grid item key={index} xs={2}>
         <FormGroup>
-          <Grid item xs={2}>
+          <Grid item xs={4}>
             <Typography variant="body2" className={classes.checkboxListTitle}>
               {column.label}
             </Typography>
@@ -405,11 +405,10 @@ class TableFilter extends React.Component {
           spacing={4}>
             <Grid
             container
-            direction="row"
+            direction="column"
             justifyContent="center"
-            alignItems="center"
-            xs={3}
-            spacing={2}
+            alignItems="start"
+            xs={4}
             >
           {columns.map((column, index) => {
             if (column.filter) {
@@ -423,9 +422,8 @@ class TableFilter extends React.Component {
             container
             direction="column"
             justifyContent="center"
-            alignItems="center"
-            xs={3}
-            spacing={2}
+            alignItems="start"
+            xs={2}
             >
           {columns.map((column, index) => {
             if (column.filter) {
@@ -439,9 +437,8 @@ class TableFilter extends React.Component {
             container
             direction="row"
             justifyContent="center"
-            alignItems="center"
+            alignItems="start"
             xs={6}
-            spacing={2}
             >
           {columns.map((column, index) => {
             if (column.filter) {
