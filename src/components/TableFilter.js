@@ -68,6 +68,7 @@ export const defaultFilterStyles = theme => ({
   },
   checkboxFormControlLabel: {
     fontSize: '15px',
+    marginLeft: '8px',
     color: theme.palette.text.primary,
   },
   checkboxIcon: {
@@ -166,7 +167,7 @@ class TableFilter extends React.Component {
     return (
       <Grid item key={index} xs={2}>
         <FormGroup>
-          <Grid item xs={8}>
+          <Grid item xs={12}>
             <Typography variant="body2" className={classes.checkboxListTitle}>
               {column.label}
             </Typography>
