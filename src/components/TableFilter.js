@@ -165,9 +165,9 @@ class TableFilter extends React.Component {
       column.filterOptions && column.filterOptions.renderValue ? column.filterOptions.renderValue : v => v;
 
     return (
-      <Grid item key={index} xs={6}>
+      <Grid item key={index} xs={2}>
         <FormGroup>
-          <Grid item xs={12}>
+          <Grid item xs={8}>
             <Typography variant="body2" className={classes.checkboxListTitle}>
               {column.label}
             </Typography>
