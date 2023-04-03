@@ -438,12 +438,27 @@ class TableFilter extends React.Component {
             direction="row"
             justifyContent="center"
             alignItems="center"
-            xs={6}
+            xs={4}
             >
           {columns.map((column, index) => {
             if (column.filter) {
               const filterType = column.filterType || options.filterType;
               if(filterType === 'checkbox') 
+              return this.renderCheckbox(column, index, components);
+            }
+          })}
+            </Grid>
+            <Grid
+            container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            xs={2}
+            >
+          {columns.map((column, index) => {
+            if (column.filter) {
+              const filterType = column.filterType || options.filterType;
+              if(filterType === 'checkbox+') 
               return this.renderCheckbox(column, index, components);
             }
           })}
