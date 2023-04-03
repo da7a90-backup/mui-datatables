@@ -408,7 +408,7 @@ class TableFilter extends React.Component {
             direction="column"
             justifyContent="center"
             alignItems="center"
-            xs={4}
+            xs={2}
             >
           {columns.map((column, index) => {
             if (column.filter) {
@@ -438,7 +438,7 @@ class TableFilter extends React.Component {
             direction="row"
             justifyContent="center"
             alignItems="center"
-            xs={4}
+            xs={6}
             >
           {columns.map((column, index) => {
             if (column.filter) {
@@ -452,7 +452,7 @@ class TableFilter extends React.Component {
             container
             direction="column"
             justifyContent="flex-start"
-            alignItems="center"
+            alignItems="flex-start"
             xs={2}
             >
           {columns.map((column, index) => {
