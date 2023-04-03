@@ -451,7 +451,7 @@ class TableFilter extends React.Component {
             <Grid
             container
             direction="column"
-            justifyContent="center"
+            justifyContent="flex-start"
             alignItems="center"
             xs={2}
             >
