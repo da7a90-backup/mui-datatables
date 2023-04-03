@@ -9,7 +9,7 @@ import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles({ name: 'MUIDataTableViewCol' })(theme => ({
   root: {
-    padding: '16px 24px 16px 24px',
+    paddingLeft: '80px',
     fontFamily: 'Roboto',
   },
   title: {
@@ -23,9 +23,7 @@ const useStyles = makeStyles({ name: 'MUIDataTableViewCol' })(theme => ({
   formGroup: {
     marginTop: '8px',
   },
-  formControl: {
-    paddingLeft: '80px'
-  },
+  formControl: {},
   checkbox: {
     padding: '0px',
     width: '32px',
