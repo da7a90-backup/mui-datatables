@@ -52,7 +52,7 @@ const TableViewCol = ({ columns, options, components = {}, onColumnUpdate, updat
       <Typography variant="caption" className={classes.title}>
         {textLabels.title}
       </Typography>
-      <FormGroup className={classes.formGroup}>
+      <FormGroup className={classes.formGroup} row="true">
         {columns.map((column, index) => {
           return (
             column.display !== 'excluded' &&
