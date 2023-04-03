@@ -23,7 +23,9 @@ const useStyles = makeStyles({ name: 'MUIDataTableViewCol' })(theme => ({
   formGroup: {
     marginTop: '8px',
   },
-  formControl: {},
+  formControl: {
+    paddingLeft: '80px'
+  },
   checkbox: {
     padding: '0px',
     width: '32px',
