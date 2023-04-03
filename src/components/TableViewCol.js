@@ -9,7 +9,7 @@ import { makeStyles } from 'tss-react/mui';
 
 const useStyles = makeStyles({ name: 'MUIDataTableViewCol' })(theme => ({
   root: {
-    paddingLeft: '80px',
+    paddingLeft: '80px!important',
     fontFamily: 'Roboto',
   },
   title: {
