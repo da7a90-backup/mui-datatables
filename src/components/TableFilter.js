@@ -403,98 +403,54 @@ class TableFilter extends React.Component {
           justifyContent="flex-start"
           alignItems="center"
           spacing={4}>
-            <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
-            xs={2}
-            >
-          {columns.map((column, index) => {
-            if (column.filter) {
-              const filterType = column.filterType || options.filterType;
-              if(filterType === 'custom') 
-              return this.renderCustomField(column, index);
-            }
-          })}
-            </Grid>
-            <Grid
-            container
-            direction="column"
-            justifyContent="center"
-            alignItems="start"
-            xs={2}
-            >
-          {columns.map((column, index) => {
-            if (column.filter) {
-              const filterType = column.filterType || options.filterType;
-              if(filterType === 'multiselect') 
-              return this.renderMultiselect(column, index, components);
-            }
-          })}
-            </Grid>
-            <Grid
-            container
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
-            xs={6}
-            >
-          {columns.map((column, index) => {
-            if (column.filter) {
-              const filterType = column.filterType || options.filterType;
-              if(filterType === 'checkbox') 
-              return this.renderCheckbox(column, index, components);
-            }
-          })}
-            </Grid>
-            <Grid
-            container
-            direction="column"
-            justifyContent="flex-start"
-            alignItems="flex-start"
-            xs={2}
-            >
-          {columns.map((column, index) => {
-            if (column.filter) {
-              const filterType = column.filterType || options.filterType;
-              if(filterType === 'checkbox+') 
-              return this.renderCheckbox(column, index, components);
-            }
-          })}
-            </Grid>
-            <Grid
-            container
-            direction="column"
-            justifyContent="flex-start"
-            alignItems="center"
-            xs={3}
-            spacing={2}
-            >
-          {columns.map((column, index) => {
-            if (column.filter) {
-              const filterType = column.filterType || options.filterType;
-              if(filterType === 'textField') 
-              return this.renderTextField(column, index);
-            }
-          })}
-            </Grid>
-            <Grid
-            container
-            direction="column"
-            justifyContent="flex-start"
-            alignItems="center"
-            xs={3}
-            spacing={2}
-            >
-          {columns.map((column, index) => {
-            if (column.filter) {
-              const filterType = column.filterType || options.filterType;
-              if(filterType === 'select') 
-              return this.renderSelect(column, index);
-            }
-          })}
-            </Grid>
+          <Grid container direction="column" justifyContent="center" alignItems="center" xs={2}>
+            {columns.map((column, index) => {
+              if (column.filter) {
+                const filterType = column.filterType || options.filterType;
+                if (filterType === 'custom') return this.renderCustomField(column, index);
+              }
+            })}
+          </Grid>
+          <Grid container direction="column" justifyContent="center" alignItems="start" xs={2}>
+            {columns.map((column, index) => {
+              if (column.filter) {
+                const filterType = column.filterType || options.filterType;
+                if (filterType === 'multiselect') return this.renderMultiselect(column, index, components);
+              }
+            })}
+          </Grid>
+          <Grid container direction="row" justifyContent="center" alignItems="center" xs={6}>
+            {columns.map((column, index) => {
+              if (column.filter) {
+                const filterType = column.filterType || options.filterType;
+                if (filterType === 'checkbox') return this.renderCheckbox(column, index, components);
+              }
+            })}
+          </Grid>
+          <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={2}>
+            {columns.map((column, index) => {
+              if (column.filter) {
+                const filterType = column.filterType || options.filterType;
+                if (filterType === 'checkbox+') return this.renderCheckbox(column, index, components);
+              }
+            })}
+          </Grid>
+          <Grid container direction="column" justifyContent="flex-start" alignItems="center" xs={3} spacing={2}>
+            {columns.map((column, index) => {
+              if (column.filter) {
+                const filterType = column.filterType || options.filterType;
+                if (filterType === 'textField') return this.renderTextField(column, index);
+              }
+            })}
+          </Grid>
+          <Grid container direction="column" justifyContent="flex-start" alignItems="center" xs={3} spacing={2}>
+            {columns.map((column, index) => {
+              if (column.filter) {
+                const filterType = column.filterType || options.filterType;
+                if (filterType === 'select') return this.renderSelect(column, index);
+              }
+            })}
+          </Grid>
         </Grid>
         {customFooter ? customFooter(filterList, this.applyFilters) : ''}
       </div>

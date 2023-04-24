@@ -359,6 +359,16 @@ class TableToolbar extends React.Component {
           </div>
           <div
             className={options.responsive !== RESPONSIVE_FULL_WIDTH_NAME ? classes.actions : classes.fullWidthActions}>
+            {!(options.viewColumns === false || options.viewColumns === 'false') && (
+              <TableViewColComponent
+                data={data}
+                columns={columns}
+                options={options}
+                onColumnUpdate={toggleViewColumn}
+                updateColumns={updateColumns}
+                components={components}
+              />
+            )}
             {!(options.search === false || options.search === 'false' || options.searchAlwaysOpen === true) && (
               <Tooltip title={search} disableFocusListener>
                 <IconButton
@@ -405,16 +415,6 @@ class TableToolbar extends React.Component {
                   </PrintContextConsumer>
                 </ReactToPrint>
               </span>
-            )}
-            {!(options.viewColumns === false || options.viewColumns === 'false') && (
-                  <TableViewColComponent
-                    data={data}
-                    columns={columns}
-                    options={options}
-                    onColumnUpdate={toggleViewColumn}
-                    updateColumns={updateColumns}
-                    components={components}
-                  />
             )}
             {options.customToolbar && options.customToolbar({ displayData: this.props.displayData })}
           </div>
