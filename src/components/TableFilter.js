@@ -468,7 +468,7 @@ class TableFilter extends React.Component {
               }
             })}
           </Grid>
-          <Grid container direction="row" justifyContent="center" alignItems="center" xs={6}>
+          <Grid container direction="column" justifyContent="center" alignItems="center" xs={2}>
             {columns.map((column, index) => {
               if (column.filter) {
                 const filterType = column.filterType || options.filterType;
