@@ -16,7 +16,6 @@ import Typography from '@mui/material/Typography';
 import clsx from 'clsx';
 import { withStyles } from 'tss-react/mui';
 import cloneDeep from 'lodash.clonedeep';
-import { Paper } from '@mui/material';
 
 export const defaultFilterStyles = theme => ({
   root: {
@@ -478,15 +477,13 @@ class TableFilter extends React.Component {
             })}
           </Grid>
           <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={2}>
-            <Paper elevation={2}>
-            <Typography>Wavelengths Included</Typography>
+          <Typography align='left' variant='overline'>Wavelengths Included</Typography>
             {columns.map((column, index) => {
               if (column.filter) {
                 const filterType = column.filterType || options.filterType;
                 if (filterType === 'checkbox+') return this.renderCheckboxPlus(column, index, components);
               }
             })}
-            </Paper>
           </Grid>
           <Grid container direction="column" justifyContent="flex-start" alignItems="center" xs={3} spacing={2}>
             {columns.map((column, index) => {
