@@ -215,7 +215,6 @@ class TableFilter extends React.Component {
 
     return (
       <Grid item key={index} xs={2}>
-        <Typography>Wavelengths Included</Typography>
         <FormGroup>
           <Grid item xs={12}>
             <Typography variant="body2" className={classes.checkboxListTitle}>
@@ -478,6 +477,7 @@ class TableFilter extends React.Component {
             })}
           </Grid>
           <Grid container direction="column" justifyContent="flex-start" alignItems="flex-start" xs={2}>
+          <Typography>Wavelengths Included</Typography>
             {columns.map((column, index) => {
               if (column.filter) {
                 const filterType = column.filterType || options.filterType;
