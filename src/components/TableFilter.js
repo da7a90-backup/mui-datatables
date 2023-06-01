@@ -168,7 +168,7 @@ class TableFilter extends React.Component {
       <Grid item key={index} xs={3}>
         <FormGroup>
           <Grid item xs={12}>
-            <Typography variant="body2" className={classes.checkboxListTitle}>
+            <Typography align='left' variant="body2" className={classes.checkboxListTitle}>
               {column.label}
             </Typography>
           </Grid>
