@@ -205,6 +205,56 @@ class TableFilter extends React.Component {
     );
   }
 
+  renderCheckboxPlus(column, index, components = {}) {
+    const CheckboxComponent = components.Checkbox || Checkbox;
+
+    const { classes, filterData } = this.props;
+    const { filterList } = this.state;
+    const renderItem =
+      column.filterOptions && column.filterOptions.renderValue ? column.filterOptions.renderValue : v => v;
+
+    return (
+      <Grid item key={index} xs={2}>
+        <Typography>Wavelengths Included</Typography>
+        <FormGroup>
+          <Grid item xs={12}>
+            <Typography variant="body2" className={classes.checkboxListTitle}>
+              {column.label}
+            </Typography>
+          </Grid>
+          <Grid container>
+            {filterData[index].map((filterValue, filterIndex) => (
+              <Grid item key={filterIndex}>
+                <FormControlLabel
+                  key={filterIndex}
+                  classes={{
+                    root: classes.checkboxFormControl,
+                    label: classes.checkboxFormControlLabel,
+                  }}
+                  control={
+                    <CheckboxComponent
+                      data-description="table-filter"
+                      color="primary"
+                      className={classes.checkboxIcon}
+                      onChange={this.handleCheckboxChange.bind(null, index, filterValue, column.name)}
+                      checked={filterList[index].indexOf(filterValue) >= 0}
+                      classes={{
+                        root: classes.checkbox,
+                        checked: classes.checked,
+                      }}
+                      value={filterValue != null ? filterValue.toString() : ''}
+                    />
+                  }
+                  label={renderItem(filterValue)}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        </FormGroup>
+      </Grid>
+    );
+  }
+
   renderSelect(column, index) {
     const { classes, filterData, options } = this.props;
     const { filterList } = this.state;
@@ -431,7 +481,7 @@ class TableFilter extends React.Component {
             {columns.map((column, index) => {
               if (column.filter) {
                 const filterType = column.filterType || options.filterType;
-                if (filterType === 'checkbox+') return this.renderCheckbox(column, index, components);
+                if (filterType === 'checkbox+') return this.renderCheckboxPlus(column, index, components);
               }
             })}
           </Grid>
